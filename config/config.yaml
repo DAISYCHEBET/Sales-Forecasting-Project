@@ -1,0 +1,51 @@
+# Project Configuration
+
+# Data paths
+data:
+  raw_path: "data/raw/train.csv"
+  processed_path: "data/processed/processed_data.csv"
+  predictions_path: "data/predictions/"
+
+# Model settings
+models:
+  prophet:
+    seasonality_mode: "multiplicative"
+    yearly_seasonality: true
+    weekly_seasonality: true
+    daily_seasonality: false
+    
+  sarima:
+    order: [1, 1, 1]
+    seasonal_order: [1, 1, 1, 12]
+    
+  xgboost:
+    n_estimators: 100
+    max_depth: 5
+    learning_rate: 0.1
+
+# Training settings
+training:
+  test_split: 0.2
+  forecast_horizon: 12
+  random_state: 42
+
+# Feature engineering
+features:
+  lag_features: [1, 2, 3, 6, 12]
+  rolling_windows: [3, 6, 12]
+  
+# MLflow settings
+mlflow:
+  experiment_name: "sales_forecasting"
+  tracking_uri: "mlruns"
+
+# API settings
+api:
+  host: "0.0.0.0"
+  port: 8000
+  reload: true
+
+# Streamlit settings
+streamlit:
+  port: 8501
+  theme: "light"
