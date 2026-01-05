@@ -101,8 +101,8 @@ sales_timeseries_project/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/DAISYCHEBET/Time-Series-Project.git
-cd sales_timeseries_project
+git clone https://github.com/DAISYCHEBET/Sales-Forecasting-Project.git
+cd Sales-Forecasting-Project
 ```
 
 2. **Create virtual environment**
