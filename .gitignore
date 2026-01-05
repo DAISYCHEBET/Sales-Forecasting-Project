@@ -24,22 +24,20 @@ wheels/
 *.egg
 
 # Jupyter Notebook
-.ipynb_checkpoints
+.ipynb_checkpoints/
 *-checkpoint.ipynb
 
-# Data files (don't commit large datasets)
+# Data files - Allow specific files
 *.csv
 *.xlsx
 *.json
 *.parquet
-!data/raw/.gitkeep
-!data/processed/.gitkeep
-!data/predictions/.gitkeep
+# But keep these specific data files
+!data/raw/train.csv
+!data/processed/processed_data.csv
+!data/processed/features_monthly.csv
 
-# Models (too large for git)
-models/*.pkl
-models/*.h5
-models/*.joblib
+# Models (stored in MLflow)
 *.pkl
 *.h5
 *.joblib
@@ -59,7 +57,7 @@ models/*.joblib
 .DS_Store
 Thumbs.db
 
-# MLflow
+# MLflow (local experiments)
 mlruns/
 mlartifacts/
 
@@ -71,3 +69,4 @@ logs/
 *.tmp
 *.bak
 *.cache
+cmd_activity_*.txt

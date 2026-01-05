@@ -60,34 +60,33 @@ This project demonstrates a **production-ready machine learning pipeline** for t
 
 ##  Project Structure
 ```
-sales_timeseries_project/
+Sales-Forecasting-Project/
 ├── data/
-│   ├── raw/                    # Original dataset (9,800 transactions)
-│   ├── processed/              # Cleaned data with features
-│   └── predictions/            # Forecast outputs
+│   ├── raw/                    # Original dataset (train.csv - 9,800 transactions)
+│   └── processed/              # Cleaned data (processed_data.csv, features_monthly.csv)
 ├── notebooks/
-│   └── 01_original_analysis.ipynb # Exploratory Data Analysis 
+│   └── 01_original_analysis.ipynb # Exploratory Data Analysis
 ├── src/
+│   ├── __init__.py             # Package initializer
 │   ├── data_preprocessing.py   # Data cleaning pipeline
 │   ├── feature_engineering.py  # Feature creation (24 features)
 │   ├── models.py               # Model training & evaluation
-│   ├── evaluation.py           # Model evaluation utilities
 │   └── utils.py                # Helper functions
 ├── api/
-│   ├── app.py                  # FastAPI application
-│   └── schemas.py              # Pydantic models
+│   └── app.py                  # FastAPI application
 ├── config/
-│   └── config.yaml             # Configuration
-├── models/                     # Saved model artifacts
-├── mlruns/                     # MLflow experiments
+│   └── config.yaml             # Project configuration
+├── mlruns/                     # MLflow experiments (local only, not on GitHub)
 ├── run_preprocessing.py        # Data pipeline runner
 ├── run_feature_engineering.py  # Feature engineering runner
 ├── run_models.py               # Model training runner
-├── get_best_model.py           # Utility to find best model
+├── get_best_model.py           # Utility to find best MLflow model
 ├── requirements.txt            # Python dependencies
 ├── Dockerfile                  # Docker build instructions
 ├── docker-compose.yml          # Docker orchestration
-└── README.md
+├── .dockerignore               # Docker ignore rules
+├── .gitignore                  # Git ignore rules
+└── README.md                   # Project documentation
 ```
 
 ##  Quick Start
@@ -123,18 +122,19 @@ pip install -r requirements.txt
 
 #### Option 1: Run Complete Pipeline
 ```bash
-# 1. Preprocess data
+# 1. Preprocess data (cleans raw data)
 python run_preprocessing.py
 
-# 2. Engineer features
+# 2. Engineer features (creates time series features)
 python run_feature_engineering.py
 
-# 3. Train and compare models
+# 3. Train and compare models (Prophet, SARIMA, XGBoost)
 python run_models.py
 
-# 4. View MLflow results
+# 4. View MLflow experiment results
 mlflow ui
-# Open: http://localhost:5000
+# Open browser: http://localhost:5000
+# Compare model performance, view metrics, and explore runs
 ```
 
 #### Option 2: Use the API
@@ -146,7 +146,7 @@ python -m uvicorn api.app:app --reload
 # Open: http://localhost:8000/docs
 ```
 
-#### Option 3: Using Docker (Recommended for Production)
+#### Option 3: Using Docker 
 ```bash
 # Build and run with Docker Compose
 docker-compose up
