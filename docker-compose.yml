@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sales-forecast-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Mount directories so data persists
+      - ./data:/app/data
+      - ./mlruns:/app/mlruns
+      - ./models:/app/models
+      - ./config:/app/config
+    restart: unless-stopped
