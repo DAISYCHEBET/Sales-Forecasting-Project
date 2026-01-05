@@ -1,23 +1,19 @@
+notepad .dockerignore
+```
+
+**Replace the entire content with this cleaned-up version:**
+```
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
-.Python
 venv/
 env/
 ENV/
 
-# Jupyter
-.ipynb_checkpoints/
-*.ipynb
-
 # Git
 .git/
 .gitignore
-
-# MLflow runs (will be mounted as volume)
-# Don't include in image, use volume instead
 
 # IDE
 .vscode/
@@ -30,14 +26,11 @@ Thumbs.db
 
 # Logs
 *.log
+cmd_activity_*.txt
 
 # Documentation
 *.md
-docs/
 
-# Tests
-tests/
-
-# Temp files
-*.tmp
-cmd_activity_*.txt
+# MLflow (optional - we mount this as volume)
+# mlruns/
+# mlartifacts/
